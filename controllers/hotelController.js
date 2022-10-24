@@ -1,4 +1,4 @@
-const { create, getById, update, deleteById, bookRoom } = require('../services/hotelService');
+const { getById, update, deleteById, bookRoom, create } = require('../services/hotelService');
 const { parseError } = require('../util/parser');
 
 const hotelController = require('express').Router();
@@ -35,18 +35,15 @@ hotelController.post('/create', async (req, res) => {
     };
 
     try {
-        if (Object.values(hotel).some(v => !v)) {
-            throw new Error('All fields are required')
-        }
-
         await create(hotel);
-        res.redirect('/');
+        res.redirect('/')
     } catch (err) {
+
         res.render('create', {
             title: 'Create Hotel',
             body: hotel,
-            errors: parseError(err)
-        });
+            errors:parseError(err)
+        })
     }
 })
 
@@ -118,6 +115,7 @@ hotelController.get('/:id/book', async (req, res) => {
 
         await bookRoom(req.params.id, req.user._id);
         res.redirect(`hotel/${req.params.id}/details`);
+        
     } catch (err) {
         res.render('details', {
             title: 'Hotel Details',
