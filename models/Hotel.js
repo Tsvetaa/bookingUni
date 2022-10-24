@@ -12,7 +12,7 @@ const hotelSchema = new Schema({
                 message: 'Image URL is not valid'
             }
         },
-    rooms: { type: Number, required: true, min: [1, 'Rooms must be between 1 and 100'], max: [1, 'Rooms must be between 1 and 100']},
+    rooms: { type: Number, required: true, min: [1, 'Rooms must be between 1 and 100'], max: [100, 'Rooms must be between 1 and 100']},
     bookings: { type: [Types.ObjectId], ref: 'User', default: [] },
     owner: { type: Types.ObjectId, ref: 'User', required: true }
 });
