@@ -10,7 +10,7 @@ async function getById(id) {
 }
 
 async function getByUserBooking(userId) {
-    return Hotel.find({bookings: userId});
+    return (await Hotel.find({bookings: userId}).lean());
 }
 
 async function create(hotel) {

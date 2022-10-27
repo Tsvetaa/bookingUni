@@ -80,7 +80,7 @@ hotelController.post('/:id/edit', async (req, res) => {
         }
 
         await update(req.params.id, edited);
-        res.redirect(`hotel/${req.params.id}/details`);
+        res.redirect(`/hotel/${req.params.id}/details`);
     } catch (err) {
 
         res.render('edit', {
@@ -114,7 +114,7 @@ hotelController.get('/:id/book', async (req, res) => {
         }
 
         await bookRoom(req.params.id, req.user._id);
-        res.redirect(`hotel/${req.params.id}/details`);
+        res.redirect(`/hotel/${req.params.id}/details`);
         
     } catch (err) {
         res.render('details', {

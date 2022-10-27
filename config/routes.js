@@ -11,15 +11,4 @@ module.exports = (app) => {
     app.use('/auth', authController);
     app.use('/hotel', hasUser(), hotelController);
     app.use('/profile', profileController);
-
-
-    app.get('/error', (req, res, next) => {
-        next(new Error('propagating error'));
-    });
-
-    app.use((err, req, res, next) => {
-        console.log('Global error handeling');
-        console.log(err.message);
-        res.redirect('/');
-    });
 }
